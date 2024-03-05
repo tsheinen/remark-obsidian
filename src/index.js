@@ -94,7 +94,7 @@ const plugin = (options = {}) => (tree) => {
 
             const html = {
                 type: 'html',
-                value: `<blockquote class="callout ${type.toLowerCase()}">
+                value: `<blockquote class="callout" data-callout="${type.toLowerCase()}">
                     ${icon ? `
                         <div class="callout-title">
                             ${icon ? `<div class="callout-icon">${icon}</div>` : ''}
