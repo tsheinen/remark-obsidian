@@ -85,7 +85,7 @@ const plugin = (options = {}) => (tree) => {
     });
 
     visit(tree, 'blockquote', (node, index, parent) => {
-        console.log("blockquote", node);
+        console.log("blockquote", JSON.stringify(node));
 
         const blockquote = toString(node);
 
