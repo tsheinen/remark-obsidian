@@ -89,7 +89,7 @@ const plugin = (options = {}) => (tree) => {
 
         if (blockquote.match(CALLOUT_REGEX)) {
             const [, type, title] = CALLOUT_REGEX.exec(blockquote);
-            const content = blockquote.replace(CALLOUT_REGEX, '').trim().replace(/\n/g, '<br>');
+            const content = blockquote.replace(CALLOUT_REGEX, '').trim().split("\n").map((line) => `<p>${line}</p>`).join();
             const icon = ICONS[type.toLowerCase()];
 
             const html = {
@@ -102,7 +102,7 @@ const plugin = (options = {}) => (tree) => {
                         </div>
                     ` : ''}
                     <div class="callout-content">
-                        <p>${content}</p>
+                        ${content}
                     </div>
                 </blockquote>`,
             };
