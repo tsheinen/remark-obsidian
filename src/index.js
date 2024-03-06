@@ -95,7 +95,7 @@ const plugin = (options = {}) => (tree) => {
 
         if (blockquote_paragraphs[0].match(CALLOUT_REGEX)) {
             const [, type, title] = CALLOUT_REGEX.exec(blockquote_paragraphs[0]);
-            const content = blockquote_paragraphs.slice(1).map((line) => `<p>${line}</p>`).join();
+            const content = blockquote_paragraphs.slice(1).join('<br>');
             const icon = ICONS[type.toLowerCase()];
 
             const html = {
