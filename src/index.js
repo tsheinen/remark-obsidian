@@ -87,13 +87,15 @@ const plugin = (options = {}) => (tree) => {
     visit(tree, 'blockquote', (node, index, parent) => {
         console.log("blockquote", JSON.stringify(node));
 
-        const blockquote = toString(node);
-        console.log("blockquote string", blockquote);
-        console.log("blockquote string sans callout regex", blockquote.replace(CALLOUT_REGEX, '').trim());
+        const blockquote_paragraphs = node['children'].map(
+            (ch) => ch['children'].map((ch2) => ch2['value'])
+        );
+        // console.log("blockquote string", blockquote);
+        // console.log("blockquote string sans callout regex", blockquote.replace(CALLOUT_REGEX, '').trim());
 
-        if (blockquote.match(CALLOUT_REGEX)) {
-            const [, type, title] = CALLOUT_REGEX.exec(blockquote);
-            const content = blockquote.replace(CALLOUT_REGEX, '').trim().split("\n").map((line) => `<p>${line}</p>`).join();
+        if (blockquote_paragraphs[0].match(CALLOUT_REGEX)) {
+            const [, type, title] = CALLOUT_REGEX.exec(blockquote_paragraphs[0]);
+            const content = blockquote_paragraphs.slice(1).map((line) => `<p>${line}</p>`).join();
             const icon = ICONS[type.toLowerCase()];
 
             const html = {
