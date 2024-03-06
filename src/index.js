@@ -88,6 +88,8 @@ const plugin = (options = {}) => (tree) => {
         console.log("blockquote", JSON.stringify(node));
 
         const blockquote = toString(node);
+        console.log("blockquote string", blockquote);
+        console.log("blockquote string sans callout regex", blockquote.replace(CALLOUT_REGEX, '').trim());
 
         if (blockquote.match(CALLOUT_REGEX)) {
             const [, type, title] = CALLOUT_REGEX.exec(blockquote);
