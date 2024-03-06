@@ -108,7 +108,7 @@ const plugin = (options = {}) => (tree) => {
                         </div>
                     ` : ''}
                     <div class="callout-content">
-                        ${content}
+                        <p>${content}</p>
                     </div>
                 </blockquote>`,
             };
