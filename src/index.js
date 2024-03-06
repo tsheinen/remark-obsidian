@@ -90,7 +90,7 @@ const plugin = (options = {}) => (tree) => {
         const blockquote_paragraphs = node['children'].map(
             (ch) => ch['children'].map((ch2) => ch2['value'])
         );
-        // console.log("blockquote string", blockquote);
+        console.log("blockquote", JSON.stringify(blockquote_paragraphs));
         // console.log("blockquote string sans callout regex", blockquote.replace(CALLOUT_REGEX, '').trim());
 
         if (blockquote_paragraphs[0].match(CALLOUT_REGEX)) {
