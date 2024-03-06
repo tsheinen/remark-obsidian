@@ -89,6 +89,7 @@ const plugin = (options = {}) => (tree) => {
 
         if (blockquote.match(CALLOUT_REGEX)) {
             const [, type, title] = CALLOUT_REGEX.exec(blockquote);
+            console.log("blockquote", blockquote);
             const content = blockquote.replace(CALLOUT_REGEX, '').trim().split("\n").map((line) => `<p>${line}</p>`).join();
             const icon = ICONS[type.toLowerCase()];
 
